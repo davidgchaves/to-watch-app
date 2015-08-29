@@ -10,7 +10,12 @@ gulp.task('live-server', function () {
   server.start();
 });
 
-gulp.task('bundle', function () {
+gulp.task('copy-css', function () {
+  gulp.src(['app/*.css'])
+  .pipe(gulp.dest('./build'));
+});
+
+gulp.task('bundle', ['copy-css'], function () {
   return browserify({
     entries: 'app/main.jsx',
     debug: true
