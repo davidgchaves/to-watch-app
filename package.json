@@ -20,11 +20,13 @@
   ],
   "dependencies": {
     "ejs": "^2.3.3",
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "react": "^0.13.3"
   },
   "devDependencies": {
     "browser-sync": "^2.8.2",
     "gulp": "^3.9.0",
-    "gulp-live-server": "0.0.25"
+    "gulp-live-server": "0.0.25",
+    "react-tools": "^0.13.3"
   }
 }
