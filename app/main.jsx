@@ -1,10 +1,16 @@
-var React     = require('react'),
-    FlickList = require('./components/FlickList.jsx');
+var React      = require('react'),
+    FlickList  = require('./components/FlickList.jsx'),
+    flickStore = require('./stores/FlickStore');
 
-var fakeData = [
-  { id: 1, title: "Mauvais sang", watched: true },
-  { id: 2, title: "Pure Vice", watched: true },
-  { id: 3, title: "Los Hongos" }
-];
+var data = flickStore.getFlicks();
 
-React.render(<FlickList flicks={fakeData} />, app);
+function render() {
+  React.render(<FlickList flicks={data} />, app);
+}
+
+flickStore.onChange(function (flicks) {
+  data = flicks;
+  render();
+});
+
+render();

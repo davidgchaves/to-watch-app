@@ -8,10 +8,12 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-      <div>
-        <h4 className={this.watched()}>
-          {this.props.flick.title}
-        </h4>
+      <div className="row">
+        <div className="col-md-6">
+          <h4 className={this.watched()}>
+            {this.props.flick.title}
+          </h4>
+        </div>
       </div>
     );
   }

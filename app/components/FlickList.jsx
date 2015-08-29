@@ -1,5 +1,6 @@
-var React = require('react'),
-    Flick = require('./Flick.jsx');
+var React    = require('react'),
+    Flick    = require('./Flick.jsx'),
+    AddFlick = require('./AddFlick.jsx');
 
 module.exports = React.createClass({
   renderFlicks: function () {
@@ -14,6 +15,7 @@ module.exports = React.createClass({
       <div>
         <h1>To-Watch</h1>
         <div>{this.renderFlicks()}</div>
+        <AddFlick />
       </div>
     );
   }
