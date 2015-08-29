@@ -1,9 +1,15 @@
-var React = require('react');
+var React = require('react'),
+   action = require('./../actions/FlickListActionCreator');
 
 module.exports = React.createClass({
   watched: function () {
     const flick = this.props.flick;
     return (flick.watched ? "strikethrough" : "");
+  },
+
+  delete: function (event) {
+    event.preventDefault();
+    action.delete(this.props.flick);
   },
 
   render: function () {
@@ -14,6 +20,9 @@ module.exports = React.createClass({
             {this.props.flick.title}
           </h4>
         </div>
+        <form className="col-md-3" onSubmit={this.delete}>
+          <button>&times;</button>
+        </form>
       </div>
     );
   }

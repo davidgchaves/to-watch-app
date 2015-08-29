@@ -1,5 +1,5 @@
 var React = require('react'),
-  action = require('./../actions/FlickListActionCreator');
+   action = require('./../actions/FlickListActionCreator');
 
 module.exports = React.createClass({
   getInitialState: function () {

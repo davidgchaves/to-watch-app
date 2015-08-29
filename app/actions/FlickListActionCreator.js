@@ -6,5 +6,11 @@ module.exports = {
       payload: flick,
       type: "flick:add"
     });
+  },
+  delete: function (flick) {
+    dispatcher.dispatch({
+      payload: flick,
+      type: "flick:delete"
+    });
   }
 }

@@ -21,6 +21,17 @@ function FlickStore() {
     _triggerListeners();
   }
 
+  function _deleteFlick(flick) {
+    var flickIndex;
+    flicks.filter(function (_flick, _flickIndex) {
+      if (_flick.title === flick.title)
+        flickIndex = _flickIndex;
+    });
+
+    flicks.splice(flickIndex, 1);
+    _triggerListeners();
+  }
+
   function _triggerListeners() {
     listeners.forEach(function (listener) {
       listener(flicks);
@@ -34,8 +45,12 @@ function FlickStore() {
 
     if (eventCategory === 'flick') {
       switch (eventAction) {
-        case "add": _addFlick(event.payload);
-        break;
+        case "add":
+          _addFlick(event.payload);
+          break;
+        case "delete":
+          _deleteFlick(event.payload);
+          break;
       }
     }
   });
