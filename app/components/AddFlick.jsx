@@ -15,10 +15,10 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <div className='add-flick'>
+      <div className='add-flick form-group'>
         <form onSubmit={this.addFlick}>
           <input value={this.state.flickTitle} type='text' onChange={this.handleFlickTitle} />
-          <button> Add Flick </button>
+          <button type="submit" className="btn btn-default"> Add Flick </button>
         </form>
       </div>
     );

@@ -32,10 +32,26 @@ function FlickStore() {
     _triggerListeners();
   }
 
+  function _watchFlick(flick) {
+    var _flick = _get(flick);
+    _flick.watched = true;
+    _triggerListeners();
+  }
+
+  function _unwatchFlick(flick) {
+    var _flick = _get(flick);
+    _flick.watched = false;
+    _triggerListeners();
+  }
+
   function _triggerListeners() {
     listeners.forEach(function (listener) {
       listener(flicks);
     });
+  }
+
+  function _get(flick) {
+    return flicks.filter(function (f) { return f.title === flick.title; })[0];
   }
 
   dispatcher.register(function (event) {
@@ -50,6 +66,12 @@ function FlickStore() {
           break;
         case "delete":
           _deleteFlick(event.payload);
+          break;
+        case "watch":
+          _watchFlick(event.payload);
+          break;
+        case "unwatch":
+          _unwatchFlick(event.payload);
           break;
       }
     }
