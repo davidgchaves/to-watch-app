@@ -19,9 +19,11 @@
     "mongoDB"
   ],
   "dependencies": {
+    "body-parser": "^1.13.3",
     "bootstrap": "^3.3.5",
     "ejs": "^2.3.3",
     "express": "^4.13.3",
+    "jquery": "^2.1.4",
     "node-uuid": "^1.4.3",
     "react": "^0.13.3"
   },
