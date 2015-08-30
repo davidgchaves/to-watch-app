@@ -10,4 +10,8 @@ module.exports = function (app) {
     .get(function (req, res) {
       res.send(flicks);
     })
+    .post(function (req, res) {
+      var flick = req.body;
+      flicks.push(flick);
+    });
 }

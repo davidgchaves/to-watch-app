@@ -23,6 +23,10 @@ function FlickStore() {
   function _addFlick(flick) {
     flicks.push(flick);
     _triggerListeners();
+
+    //TODO: Manage the case where the Promise returns with error
+    // https://www.joyent.com/developers/node/design/errors
+    restHelper.post("api/flicks", flick);
   }
 
   function _deleteFlick(flick) {
