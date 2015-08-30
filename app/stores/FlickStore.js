@@ -1,12 +1,16 @@
-var dispatcher = require('./../dispatcher');
+var dispatcher = require('./../dispatcher'),
+    restHelper = require('./../helpers/RestHelper');
 
 function FlickStore() {
-  var flicks = [
-    { id: 1, title: "Mauvais sang", watched: true },
-    { id: 2, title: "Pure Vice", watched: true },
-    { id: 3, title: "Los Hongos" }
-  ];
-  var listeners = [];
+  var flicks    = [],
+      listeners = [];
+
+  restHelper
+    .get("api/flicks")
+    .then(function (data) {
+      flicks = data;
+      _triggerListeners();
+    });
 
   function getFlicks() {
     return flicks;
