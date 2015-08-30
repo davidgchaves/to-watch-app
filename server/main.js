@@ -1,6 +1,7 @@
 var express = require('express'),
     app     = express(),
-    parser  = require('body-parser');
+    parser  = require('body-parser'),
+    db      = require('./database');
 
 app
   .get('/', function (req, res) {
