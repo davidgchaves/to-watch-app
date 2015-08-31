@@ -6,7 +6,7 @@ module.exports = React.createClass({
   renderFlicks: function () {
     const flicks = this.props.flicks;
     return flicks.map(function (flick, i) {
-      return <Flick key={flick.id} flick={flick} />;
+      return <Flick key={flick._id} flick={flick} />;
     })
   },
 
