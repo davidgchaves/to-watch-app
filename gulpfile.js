@@ -1,6 +1,7 @@
 var gulp        = require('gulp'),
     LiveServer  = require('gulp-live-server'),
     browserSync = require('browser-sync'),
+    babelify    = require('babelify'),
     browserify  = require('browserify'),
     reactify    = require('reactify'),
     source      = require('vinyl-source-stream');
@@ -20,7 +21,12 @@ gulp.task('bundle', ['copy-css'], function () {
     entries: 'app/main.jsx',
     debug: true
   })
+  .transform(babelify)
   .transform(reactify)
+  .transform(babelify.configure({
+    stage: 0,
+    sourceMaps: true
+  }))
   .bundle()
   .pipe(source('app.js'))
   .pipe(gulp.dest('./build'));
