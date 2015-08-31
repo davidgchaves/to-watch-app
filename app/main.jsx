@@ -1,16 +1,7 @@
-var React      = require('react'),
-    FlickList  = require('./components/FlickList.jsx'),
-    flickStore = require('./stores/FlickStore');
+import React from 'react';
+import FlickList from './components/FlickList.jsx';
+import flickStore from './stores/FlickStore';
 
-var data = flickStore.getFlicks();
-
-function render() {
-  React.render(<FlickList flicks={data} />, app);
-}
-
-flickStore.onChange(function (flicks) {
-  data = flicks;
-  render();
+flickStore.onChange(() => {
+  React.render(<FlickList flicks={flickStore.getFlicks()} />, app);
 });
-
-render();

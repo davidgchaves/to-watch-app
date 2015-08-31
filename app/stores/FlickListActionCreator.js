@@ -1,28 +1,28 @@
-var dispatcher = require('./../dispatcher');
+import dispatcher from './../dispatcher';
 
 module.exports = {
-  add: function (flick) {
+  add (flick) {
     dispatcher.dispatch({
       payload: flick,
       type: "flick:add"
     });
   },
 
-  del: function (flick) {
+  del (flick) {
     dispatcher.dispatch({
       payload: flick,
       type: "flick:delete"
     });
   },
 
-  watch: function (flick) {
+  watch (flick) {
     dispatcher.dispatch({
       payload: flick,
       type: "flick:watch"
     });
   },
 
-  unwatch: function (flick) {
+  unwatch (flick) {
     dispatcher.dispatch({
       payload: flick,
       type: "flick:unwatch"

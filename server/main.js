@@ -8,6 +8,8 @@ require('./database');
 require('babel/register');
 
 app
+  .use(parser.urlencoded({ extended: false }))
+  .use(parser.json())
   .get('/', function (req, res) {
     var reactVirtualApp = React.createFactory(require('./../app/components/FlickList.jsx'));
     FlickModel.find(function (error, dbDoc) {
@@ -18,7 +20,6 @@ app
   .use(express.static(__dirname + './../build'))
   .listen(3000);
 
-app.use(parser.json());
-app.use(parser.urlencoded({ extended: false }));
-
 require('./routes/flicks')(app);
+
+module.exports = app;

@@ -1,29 +1,32 @@
-var React = require('react'),
-   action = require('./../actions/FlickListActionCreator');
+import React from 'react';
+import action from './../stores/FlickListActionCreator';
 
 module.exports = React.createClass({
-  getInitialState: function () {
-    return { flickTitle: "" };
+  getInitialState () {
+    return { input: "" };
   },
-  handleFlickTitle: function (event) {
+
+  handleFlickTitle (event) {
     this.setState({
-      flickTitle: event.target.value
+      input: event.target.value
     });
   },
-  addFlick: function (event) {
+
+  addFlick (event) {
     event.preventDefault();
     action.add({
-      title: this.state.flickTitle,
-      watched: false
+      title: this.state.input
+      //watched: false
     });
-    this.setState({ flickTitle: '' });
+    this.setState({ input: '' });
   },
-  render: function () {
+
+  render () {
     return (
       <div className='add-flick form-group'>
         <form onSubmit={this.addFlick}>
-          <input value={this.state.flickTitle} type='text' onChange={this.handleFlickTitle} />
-          <button type="submit" className="btn btn-default"> Add Flick </button>
+          <input value={this.state.input} type='text' required onChange={this.handleFlickTitle} />
+          <button type="submit" className="btn btn-default"> Add To-Watch Flick </button>
         </form>
       </div>
     );

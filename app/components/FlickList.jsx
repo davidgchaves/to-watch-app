@@ -1,19 +1,17 @@
-var React    = require('react'),
-    Flick    = require('./Flick.jsx'),
-    AddFlick = require('./AddFlick.jsx');
+import React from 'react';
+import Flick from './Flick.jsx';
+import AddFlick from './AddFlick.jsx';
 
 module.exports = React.createClass({
-  renderFlicks: function () {
-    const flicks = this.props.flicks;
-    return flicks.map(function (flick, i) {
-      return <Flick key={flick._id} flick={flick} />;
-    })
+  renderFlicks () {
+    return this.props.flicks.map((flick, i) => {
+      return (<Flick key={`flick-${i}`} flick={flick} />);
+    });
   },
 
-  render: function () {
+  render () {
     return (
       <div>
-        <h1>To-Watch</h1>
         <div>{this.renderFlicks()}</div>
         <AddFlick />
       </div>
