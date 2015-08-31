@@ -32,24 +32,30 @@ function FlickStore() {
   function _deleteFlick(flick) {
     var flickIndex;
     flicks.filter(function (_flick, _flickIndex) {
-      if (_flick.title === flick.title)
+      if (_flick._id === flick._id)
         flickIndex = _flickIndex;
     });
 
     flicks.splice(flickIndex, 1);
     _triggerListeners();
+
+    restHelper.del("api/flicks/" + flick._id);
   }
 
   function _watchFlick(flick) {
     var _flick = _get(flick);
     _flick.watched = true;
     _triggerListeners();
+
+    restHelper.patch("api/flicks/" + flick._id);
   }
 
   function _unwatchFlick(flick) {
     var _flick = _get(flick);
     _flick.watched = false;
     _triggerListeners();
+
+    restHelper.patch("api/flicks/" + flick._id, flick);
   }
 
   function _triggerListeners() {

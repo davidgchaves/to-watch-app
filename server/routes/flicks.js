@@ -15,4 +15,20 @@ module.exports = function (app) {
         res.status(300).send();
       });
     });
+
+  app
+  .route('/api/flicks/:id')
+    .delete(function (req, res) {
+      FlickModel
+        .findOne({ _id: req.params.id })
+        .remove();
+    })
+    .patch(function (req, res) {
+      FlickModel.findOne({ _id: req.body._id },
+                         function (error, dbDoc) {
+                           for (var key in req.body) { dbDoc[key] = req.body[key]; };
+                           dbDoc.save();
+                           res.status(200).send();
+                          })
+    });
 }
