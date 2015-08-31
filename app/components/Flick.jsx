@@ -1,5 +1,5 @@
-var React = require('react'),
-   action = require('./../actions/FlickListActionCreator');
+var React  = require('react'),
+    action = require('./../actions/FlickListActionCreator');
 
 module.exports = React.createClass({
   flickStyle: function () {
@@ -17,9 +17,9 @@ module.exports = React.createClass({
     return (flick.watched ? "Unwatch" : "Watch");
   },
 
-  delete: function (event) {
+  del: function (event) {
     event.preventDefault();
-    action.delete(this.props.flick);
+    action.del(this.props.flick);
   },
 
   toggleWatched: function (event) {
@@ -40,7 +40,7 @@ module.exports = React.createClass({
             {this.watchUnwatchButtonText()}
           </button>
         </form>
-        <form className="col-md-3" onSubmit={this.delete}>
+        <form className="col-md-3" onSubmit={this.del}>
           <button className="btn">&times;</button>
         </form>
       </div>

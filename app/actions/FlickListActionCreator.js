@@ -8,7 +8,7 @@ module.exports = {
     });
   },
 
-  delete: function (flick) {
+  del: function (flick) {
     dispatcher.dispatch({
       payload: flick,
       type: "flick:delete"
