@@ -12,7 +12,13 @@ module.exports = function (app) {
       var flickModel = new FlickModel(req.body);
 
       flickModel.save(function (error, data) {
-        res.status(300).send();
+        if (error) {
+          console.log("Error saving the model");
+          res.status(501).send();
+        } else {
+          console.log("Model saved");
+          res.status(300).send();
+        }
       });
     });
 
@@ -26,9 +32,14 @@ module.exports = function (app) {
     .patch(function (req, res) {
       FlickModel.findOne({ _id: req.body._id },
                          function (error, dbDoc) {
+                           if (!dbDoc){
+                             console.log("Error updating the model");
+                             return res.status(404).send();
+                           }
                            for (var key in req.body) { dbDoc[key] = req.body[key]; };
                            dbDoc.save();
-                           res.status(200).send();
-                          })
+                           res.status(200).send(dbDoc);
+                           console.log("Model Updated");
+                         })
     });
 }

@@ -6,11 +6,16 @@ module.exports = React.createClass({
     return { flickTitle: "" };
   },
   handleFlickTitle: function (event) {
-    this.setState({ flickTitle: event.target.value });
+    this.setState({
+      flickTitle: event.target.value
+    });
   },
   addFlick: function (event) {
     event.preventDefault();
-    action.add({ title: this.state.flickTitle });
+    action.add({
+      title: this.state.flickTitle,
+      watched: false
+    });
     this.setState({ flickTitle: '' });
   },
   render: function () {

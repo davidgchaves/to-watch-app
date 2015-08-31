@@ -65,7 +65,7 @@ function FlickStore() {
   }
 
   function _get(flick) {
-    return flicks.filter(function (f) { return f.title === flick.title; })[0];
+    return flicks.filter(function (f) { return f._id === flick._id; })[0];
   }
 
   dispatcher.register(function (event) {
@@ -75,18 +75,22 @@ function FlickStore() {
 
     if (eventCategory === 'flick') {
       switch (eventAction) {
-        case "add":
+        case "add": {
           _addFlick(event.payload);
           break;
-        case "delete":
+        }
+        case "delete": {
           _deleteFlick(event.payload);
           break;
-        case "watch":
+        }
+        case "watch": {
           _watchFlick(event.payload);
           break;
-        case "unwatch":
+        }
+        case "unwatch": {
           _unwatchFlick(event.payload);
           break;
+        }
       }
     }
   });
