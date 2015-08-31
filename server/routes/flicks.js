@@ -1,17 +1,18 @@
 module.exports = function (app) {
-  var flicks = [
-    { id: 1, title: "Mauvais sang", watched: true },
-    { id: 2, title: "Pure Vice", watched: true },
-    { id: 3, title: "Los Hongos" }
-  ];
+  var FlickModel = require('./../models/FlickModel');
 
   app
     .route('/api/flicks')
     .get(function (req, res) {
-      res.send(flicks);
+      FlickModel.find(function (error, dbDoc) {
+        res.send(dbDoc);
+      });
     })
     .post(function (req, res) {
-      var flick = req.body;
-      flicks.push(flick);
+      var flickModel = new FlickModel(req.body);
+
+      flickModel.save(function (error, data) {
+        res.status(300).send();
+      });
     });
 }
