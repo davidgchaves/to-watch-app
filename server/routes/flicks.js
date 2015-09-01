@@ -17,7 +17,7 @@ module.exports = function (app) {
           res.status(501).send();
         } else {
           console.log("Model saved");
-          res.status(300).send();
+          res.status(300).send(data);
         }
       });
     });
