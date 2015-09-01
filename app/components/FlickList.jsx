@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 import Flick from './Flick.jsx';
 import AddFlick from './AddFlick.jsx';
 

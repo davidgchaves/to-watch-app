@@ -36,7 +36,7 @@ module.exports = {
     });
   },
 
-  del (url) {
+  remove (url) {
     return new Promise((success, error) => {
       $.ajax({
         url,

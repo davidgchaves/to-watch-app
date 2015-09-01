@@ -1,14 +1,13 @@
 var express    = require('express'),
-    app        = express(),
+    app        = new express(),
     parser     = require('body-parser'),
-    React      = require('react'),
+    React      = require('react/addons'),
     FlickModel = require('./models/FlickModel');
 
 require('./database');
 require('babel/register');
 
-app
-  .use(parser.urlencoded({ extended: false }))
+app.use(parser.urlencoded({ extended: false }))
   .use(parser.json())
   .get('/', function (req, res) {
     var reactVirtualApp = React.createFactory(require('./../app/components/FlickList.jsx'));

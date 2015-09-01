@@ -8,10 +8,10 @@ module.exports = {
     });
   },
 
-  del (flick) {
+  remove (flick) {
     dispatcher.dispatch({
       payload: flick,
-      type: "flick:delete"
+      type: "flick:remove"
     });
   },
 

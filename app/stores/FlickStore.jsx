@@ -1,15 +1,9 @@
 import dispatcher from './../dispatcher';
-import { get, post, patch, del } from './../RestHelper';
+import { get, post, patch, remove } from './../RestHelper';
 
 function FlickStore() {
   let flicks    = [],
       listeners = [];
-
-  get("api/flicks")
-    .then((data) => {
-      flicks = data;
-      _triggerListeners();
-    });
 
   function getFlicks() {
     return flicks;
@@ -19,22 +13,26 @@ function FlickStore() {
     listeners.push(listener);
   }
 
+  function _triggerListeners() {
+    listeners.forEach((l) => { l(flicks); });
+  }
+
   function _addFlick(flick) {
     let flickIndex = flicks.push(flick);
     _triggerListeners();
 
     post("api/flicks", flick)
-      .then((data) => { flick._id = data._id; })
+      .then((data) => { flick._id = data._id; _triggerListeners(); })
       .catch(() => { flicks.splice(flickIndex, 1); });
   }
 
   function _deleteFlick(flick) {
-    let flickIndex = flicks.findIndex((x) => { x._id === flick._id; });
+    let flickIndex = flicks.findIndex(x => x._id === flick._id);
     let removed = flicks.splice(flickIndex, 1)[0];
     _triggerListeners();
 
-    del(`api/flicks/${flick._id}`)
-      .catch(()=>{
+    remove(`api/flicks/${flick._id}`)
+      .catch(() => {
         flicks.splice(flickIndex, 0, removed);
         _triggerListeners();
       });
@@ -45,12 +43,14 @@ function FlickStore() {
     _flick.watched = watched || false;
     _triggerListeners();
 
-    patch(`api/flicks/ ${flick._id}`, flick);
+    patch(`api/flicks/${flick._id}`, flick);
   }
 
-  function _triggerListeners() {
-    listeners.forEach((l) => { l(flicks); });
-  }
+  get("api/flicks")
+    .then((data) => {
+      flicks = data;
+      _triggerListeners();
+    });
 
   dispatcher.register((event) => {
     var splitEventType = event.type.split(':'),
@@ -62,7 +62,7 @@ function FlickStore() {
         case "add":
           _addFlick(event.payload);
           break;
-        case "delete":
+        case "remove":
           _deleteFlick(event.payload);
           break;
         case "watch":

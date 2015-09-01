@@ -1,5 +1,5 @@
-import React from 'react';
-import action from './../stores/FlickListActionCreator';
+import React from 'react/addons';
+import action from './../stores/FlickListActionCreator.jsx';
 
 module.exports = React.createClass({
   getInitialState () {

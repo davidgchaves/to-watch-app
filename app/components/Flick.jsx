@@ -1,5 +1,5 @@
-import React from 'react';
-import action from './../stores/FlickListActionCreator';
+import React from 'react/addons';
+import action from './../stores/FlickListActionCreator.jsx';
 
 module.exports = React.createClass({
   toggleWatched (event) {
@@ -7,9 +7,9 @@ module.exports = React.createClass({
     this.props.flick.watched ? action.unwatch(this.props.flick) : action.watch(this.props.flick);
   },
 
-  del (event) {
+  remove (event) {
     event.preventDefault();
-    action.del(this.props.flick);
+    action.remove(this.props.flick);
   },
 
   render () {
@@ -25,7 +25,7 @@ module.exports = React.createClass({
             {this.watchUnwatchButtonText()}
           </button>
         </form>
-        <form className="col-md-1" onSubmit={this.del}>
+        <form className="col-md-1" onSubmit={this.remove}>
           <button className="btn">&times;</button>
         </form>
       </div>
